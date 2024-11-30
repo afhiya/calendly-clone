@@ -10,7 +10,9 @@ export default async function EventsPage() {
   if (userId == null) redirectToSignIn();
 
   const events = await db.query.EventTable.findMany({
-    where: ({ clerkUserId }, { eq }) => eq(clerkUserId, userId),
+    where: userId
+      ? ({ clerkUserId }, { eq }) => eq(clerkUserId, userId)
+      : undefined,
     orderBy: ({ createdAt }, { desc }) => desc(createdAt),
   });
 
@@ -38,7 +40,7 @@ export default async function EventsPage() {
             <Link href="/events/new">
               <CalendarPlus className="mr-4 size-6" />
               New Event
-            </Link>
+            </Link  >
           </Button>
         </div>
       )}
