@@ -1,9 +1,9 @@
-export const DAYS_OF_WEEK_IN_ORDER =[
-  "sunday",
+export const DAYS_OF_WEEK_IN_ORDER = [
   "monday",
   "tuesday",
   "wednesday",
   "thursday",
   "friday",
   "saturday",
-] as const
+  "sunday"
+] as const;
