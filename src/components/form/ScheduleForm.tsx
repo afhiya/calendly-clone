@@ -4,8 +4,9 @@ import { DAYS_OF_WEEK_IN_ORDER } from "@/data/constants";
 import { formatTimezoneOffSet } from "@/lib/formatters";
 import { timeToInt } from "@/lib/utils";
 import { scheduleFormSchema } from "@/schema/schedule";
-import { createEvent, updateEvent } from "@/server/actions/events";
+import { saveSchedule } from "@/server/actions/schedule";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Cross, Plus, Trash } from "lucide-react";
 import { Fragment, useState, useTransition } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -18,6 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
+import { Input } from "../ui/input";
 import {
   Select,
   SelectContent,
@@ -25,9 +27,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { Plus, Trash } from "lucide-react";
-import { Input } from "../ui/input";
-import { saveSchedule } from "@/server/actions/schedule";
 
 type Availability = {
   startTime: string;
@@ -132,7 +131,7 @@ export function ScheduleForm({
                     addAvailability({ dayOfWeek, startTime: "9:00", endTime: "17:00" })
                   }
                 >
-                  <Plus className="size-full p-1" />
+                  <Plus className="size-full" />
                 </Button>
                 {groupAvabilityFields[dayOfWeek]?.map((field, labelIndex) => (
                   <div className="flex flex-col gap-1" key={field.id}>
@@ -144,7 +143,7 @@ export function ScheduleForm({
                           <FormItem>
                             <FormControl>
                               <Input
-                                className="w-24"
+                                className="md:w-24 w-20"
                                 aria-label={`${labelIndex} Start Time ${
                                   labelIndex + 1
                                 }`}
@@ -162,7 +161,7 @@ export function ScheduleForm({
                           <FormItem>
                             <FormControl>
                               <Input
-                                className="w-24"
+                                className="md:w-24 w-20"
                                 aria-label={`${labelIndex} End Time ${
                                   labelIndex + 1
                                 }`}
@@ -176,10 +175,10 @@ export function ScheduleForm({
                       <Button
                         type="button"
                         variant="destructiveGhost"
-                        className="size-5 p-1"
+                        className="size-10 p-1"
                         onClick={() => removeAvailability(field.index)}
                       >
-                        <Trash className="size-full p-1" />
+                        <Trash className="size-full" />
                       </Button>
                     </div>
                     <FormMessage>

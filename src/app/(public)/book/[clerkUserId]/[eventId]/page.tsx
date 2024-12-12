@@ -19,6 +19,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import "core-js/actual/object/group-by";
+import { MeetingForm } from "@/components/form/MeetingForm";
+
+export const revalidate = 0
 
 export default async function BookEventPage({
   params: { clerkUserId, eventId },
@@ -48,7 +51,21 @@ export default async function BookEventPage({
     return <NoTimeSlots event={event} calendarUser={calendarUser} />
   }
 
-  return <h1>fdfsdfsdf</h1>;
+  return (
+    <Card className="max-w-4xl mx-auto">
+      <CardHeader>
+        <CardTitle>
+          Book {event.name} with {calendarUser.fullName}
+        </CardTitle>
+        {event.description && (
+          <CardDescription>{event.description}</CardDescription>
+        )}
+      </CardHeader>
+      <CardContent>
+        <MeetingForm validTimes={validTimes} eventId={eventId} clerkUserId={clerkUserId} />
+      </CardContent>
+    </Card>
+  );
 }
 
 function NoTimeSlots({

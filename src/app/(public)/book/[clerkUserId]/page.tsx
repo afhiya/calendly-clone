@@ -31,7 +31,7 @@ export default async function BookingPage({
         Welcome to my scheduling page. Please follow the instructions to add an
         event to my calendar
       </p>
-      <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(400px,1fr))]">
+      <div className="container justify-center grid gap-4 grid-cols-[repeat(auto-fill,minmax(400px,1fr))]">
         {events.map((event) => (
           <EventCard key={event.id} {...event} />
         ))}
