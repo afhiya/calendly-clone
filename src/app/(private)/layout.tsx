@@ -1,7 +1,7 @@
 import { NavLink } from "@/components/NavLink";
-import { Toggle } from "@/components/ui/toggle";
+import { ToggleDarkMode } from "@/components/ToggleDarkMode";
 import { UserButton } from "@clerk/nextjs";
-import { CalendarRange, Lightbulb } from "lucide-react";
+import { CalendarRange } from "lucide-react";
 import { ReactNode } from "react";
 
 export default function PrivateLayout({ children }: { children: ReactNode}){
@@ -18,7 +18,7 @@ export default function PrivateLayout({ children }: { children: ReactNode}){
           <NavLink href="/schedule">Schedule</NavLink>
           </div>
           <div className="h-10 flex items-center gap-2">
-            <Toggle ><Lightbulb/></Toggle>
+            <ToggleDarkMode />
             <UserButton/>
           </div>
         </nav>
